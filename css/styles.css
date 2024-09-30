@@ -91,6 +91,49 @@ main {
     font-size: 1.1em;
 }
 
+.info h2 {
+    color: #e1e1e1;
+    margin-bottom: 15px;
+    font-size: 2em;
+}
+
+.info p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.interactive-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.info-box {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.info-box:hover {
+    transform: scale(1.05);
+    background-color: #444;
+}
+
+.info-box h3 {
+    color: #e1e1e1;
+    margin-bottom: 10px;
+    font-size: 1.6em;
+}
+
+.info-box p {
+    color: #dcdcdc;
+    font-size: 1em;
+}
+
 footer {
     background-color: #111;
     color: #888;
