@@ -144,18 +144,4 @@ main {
     font-size: 1em;
 }
 
-footer {
-    background-color: #111;
-    color: #888;
-    text-align: center;
-    padding: 15px;
-    border-top: 2px solid #444;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
 
-footer p {
-    margin: 0;
-    font-size: 0.9em;
-}
