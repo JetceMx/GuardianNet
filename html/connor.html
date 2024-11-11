@@ -4,15 +4,276 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="../css/connor.css">
     <title>Document</title>
 </head>
 <body>
     <div id="header-container"></div>
-
+    <div class="container">
+        <h1>C.O.N.N.O.R</h1>
+        <div id="question" class="question">
+            ¿Listo para comenzar?
+        </div>
+        <div class="buttons">
+            <button onclick="answer('si')">Sí</button>
+            <button onclick="answer('no')">No</button>
+            <button onclick="answer('no_se')">No sé</button>
+        </div>
+        <div id="remaining-threats"></div>
+        <div id="result"></div>
+        <div id="description" class="description" style="display: none;"></div>
+        <div id="confidence" class="confidence"></div>
+        <button onclick="resetGame()" class="reset-btn">Reiniciar</button>
+   
     
 
     <div id="footer-container"></div>
     <script src="/js/headfoot.js"></script>
+    <script>
+        // Estructura de Firestore:
+        /*
+        Collections:
+        - decisionTree (árbol de decisión)
+        - descriptions (descripciones de ataques)
+        - gameResults (resultados de los juegos)
+        - statistics (estadísticas globales)
+        */
+
+        // Configuración de Firebase y Firestore
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "tu-proyecto.firebaseapp.com",
+            projectId: "tu-proyecto",
+            storageBucket: "tu-proyecto.appspot.com",
+            messagingSenderId: "tu-messaging-sender-id",
+            appId: "tu-app-id"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Clase principal para manejar la lógica de Firestore
+        class FirestoreManager {
+            constructor() {
+                this.db = firebase.firestore();
+                this.decisionTree = null;
+                this.descriptions = null;
+            }
+
+            // Cargar el árbol de decisión desde Firestore
+            async loadDecisionTree() {
+                try {
+                    const snapshot = await this.db.collection('decisionTree').get();
+                    this.decisionTree = {};
+                    snapshot.forEach(doc => {
+                        this.decisionTree[doc.id] = doc.data();
+                    });
+                    return this.decisionTree;
+                } catch (error) {
+                    console.error("Error cargando árbol de decisión:", error);
+                    return null;
+                }
+            }
+
+            // Cargar descripciones de ataques
+            async loadDescriptions() {
+                try {
+                    const snapshot = await this.db.collection('descriptions').get();
+                    this.descriptions = {};
+                    snapshot.forEach(doc => {
+                        this.descriptions[doc.id] = doc.data().description;
+                    });
+                    return this.descriptions;
+                } catch (error) {
+                    console.error("Error cargando descripciones:", error);
+                    return null;
+                }
+            }
+
+            // Guardar resultado del juego
+            async saveGameResult(result) {
+                try {
+                    await this.db.collection('gameResults').add({
+                        path: result.path,
+                        finalResult: result.finalResult,
+                        confidence: result.confidence,
+                        correct: result.correct,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    // Actualizar estadísticas globales
+                    await this.updateStatistics(result);
+                } catch (error) {
+                    console.error("Error guardando resultado:", error);
+                }
+            }
+
+            // Actualizar estadísticas globales
+            async updateStatistics(result) {
+                const statsRef = this.db.collection('statistics').doc('global');
+                
+                await this.db.runTransaction(async (transaction) => {
+                    const statsDoc = await transaction.get(statsRef);
+                    
+                    if (!statsDoc.exists) {
+                        transaction.set(statsRef, {
+                            totalGames: 1,
+                            correctGuesses: result.correct ? 1 : 0,
+                            attackTypes: {
+                                [result.finalResult]: 1
+                            },
+                            averageConfidence: result.confidence
+                        });
+                    } else {
+                        const data = statsDoc.data();
+                        transaction.update(statsRef, {
+                            totalGames: data.totalGames + 1,
+                            correctGuesses: data.correctGuesses + (result.correct ? 1 : 0),
+                            [`attackTypes.${result.finalResult}`]: (data.attackTypes[result.finalResult] || 0) + 1,
+                            averageConfidence: (data.averageConfidence * data.totalGames + result.confidence) / (data.totalGames + 1)
+                        });
+                    }
+                });
+            }
+
+            // Inicializar la base de datos con datos por defecto
+            async initializeDatabase(defaultTree, defaultDescriptions) {
+                try {
+                    // Verificar si ya existen datos
+                    const treeSnapshot = await this.db.collection('decisionTree').limit(1).get();
+                    
+                    if (treeSnapshot.empty) {
+                        // Guardar árbol de decisión
+                        const batch = this.db.batch();
+                        
+                        for (const [nodeId, nodeData] of Object.entries(defaultTree)) {
+                            const ref = this.db.collection('decisionTree').doc(nodeId);
+                            batch.set(ref, nodeData);
+                        }
+
+                        // Guardar descripciones
+                        for (const [attackType, description] of Object.entries(defaultDescriptions)) {
+                            const ref = this.db.collection('descriptions').doc(attackType);
+                            batch.set(ref, { description });
+                        }
+
+                        await batch.commit();
+                        console.log("Base de datos inicializada con éxito");
+                    }
+                } catch (error) {
+                    console.error("Error inicializando base de datos:", error);
+                }
+            }
+
+            // Obtener estadísticas del juego
+            async getStatistics() {
+                try {
+                    const statsDoc = await this.db.collection('statistics').doc('global').get();
+                    return statsDoc.exists ? statsDoc.data() : null;
+                } catch (error) {
+                    console.error("Error obteniendo estadísticas:", error);
+                    return null;
+                }
+            }
+
+            // Actualizar nodo del árbol de decisión
+            async updateNode(nodeId, newData) {
+                try {
+                    await this.db.collection('decisionTree').doc(nodeId).update(newData);
+                    return true;
+                } catch (error) {
+                    console.error("Error actualizando nodo:", error);
+                    return false;
+                }
+            }
+
+            // Agregar nuevo nodo al árbol
+            async addNode(nodeId, nodeData) {
+                try {
+                    await this.db.collection('decisionTree').doc(nodeId).set(nodeData);
+                    return true;
+                } catch (error) {
+                    console.error("Error agregando nodo:", error);
+                    return false;
+                }
+            }
+        }
+
+        // Uso en el juego principal
+        const firestoreManager = new FirestoreManager();
+
+        // Inicializar el juego
+        async function initializeGame() {
+            // Cargar datos desde Firestore o usar datos por defecto
+            const treeFromFirestore = await firestoreManager.loadDecisionTree();
+            const descriptionsFromFirestore = await firestoreManager.loadDescriptions();
+
+            if (treeFromFirestore && descriptionsFromFirestore) {
+                decisionTree = treeFromFirestore;
+                descriptions = descriptionsFromFirestore;
+            } else {
+                // Si no se pueden cargar los datos, usar los valores por defecto
+                await firestoreManager.initializeDatabase(defaultDecisionTree, defaultDescriptions);
+            }
+
+            resetGame();
+        }
+
+        // Modificar la función answer para guardar resultados
+        async function answer(response) {
+            const node = decisionTree[currentNode];
+            if (!node) return;
+
+            // Guardar la respuesta en el camino
+            gamePath.push({
+                question: node.question,
+                answer: response
+            });
+
+            filterThreats(response, node.question);
+
+            let nextNode;
+            if (response === 'si') {
+                nextNode = node.si;
+            } else if (response === 'no') {
+                nextNode = node.no;
+            } else {
+                nextNode = node.si;
+            }
+
+            if (nextNode.startsWith("RESULTADO:")) {
+                const resultado = nextNode.split(":")[1];
+                // Guardar resultado en Firestore
+                await firestoreManager.saveGameResult({
+                    path: gamePath,
+                    finalResult: resultado,
+                    confidence: calculateConfidence(),
+                    correct: true // Esto debería ser confirmado por el usuario
+                });
+                showResult(resultado);
+            } else {
+                currentNode = nextNode;
+                document.getElementById('question').textContent = decisionTree[nextNode].question;
+            }
+        }
+
+        // Agregar funcionalidad para mostrar estadísticas
+        async function showStatistics() {
+            const stats = await firestoreManager.getStatistics();
+            if (stats) {
+                const accuracy = ((stats.correctGuesses / stats.totalGames) * 100).toFixed(1);
+                document.getElementById('statistics').innerHTML = `
+                    <h3>Estadísticas Globales</h3>
+                    <p>Total de juegos: ${stats.totalGames}</p>
+                    <p>Precisión: ${accuracy}%</p>
+                    <p>Confianza promedio: ${stats.averageConfidence.toFixed(1)}%</p>
+                `;
+            }
+        }
+    </script>
 </body>
 </html>
+

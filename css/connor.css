@@ -1,7 +1,85 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #000000;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    background-color: #2d2d2d;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+h1 {
+    color: #00ff00;
+    margin-bottom: 2rem;
+}
+
+.question {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #3d3d3d;
+    border-radius: 5px;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#result {
+    font-size: 1.2rem;
+    color: #00ff00;
+    margin-top: 2rem;
+}
+
+.description {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #3d3d3d;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.confidence {
+    color: #ffd700;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+#remaining-threats {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #888;
 }
 
 footer {
