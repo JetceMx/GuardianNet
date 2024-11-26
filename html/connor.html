@@ -50,7 +50,7 @@
           </div>
     </header>
     <div class="container">
-        <h1>CyberAkinator</h1>
+        <h1>C.O.N.N.O.R</h1>
         <div id="question" class="question">
             ¿Listo para comenzar?
         </div>
@@ -68,7 +68,6 @@
     <div id="footer-container"></div>
 
     <footer>
-    
         <div class="logo-effect">
           <div>
             <div>
@@ -114,77 +113,212 @@
     <script>
         // Estructura del árbol de decisión
         const decisionTree = {
-            impacto: {
-                question: "¿El ataque tiene un impacto directo en los datos o sistemas?",
-                si: "tipoImpacto",
-                no: "interaccionUsuario"
-            },
-            tipoImpacto: {
-                question: "¿El ataque modifica o cifra los datos?",
-                si: "cifrado",
-                no: "disponibilidad"
-            },
-            cifrado: {
-                question: "¿Se pide un rescate para recuperar los datos?",
-                si: "RESULTADO:Ransomware",
-                no: "modificacionSistema"
-            },
-            disponibilidad: {
-                question: "¿El ataque afecta la disponibilidad del servicio?",
-                si: "origenAtaque",
-                no: "datosPersonales"
-            },
-            origenAtaque: {
-                question: "¿El ataque proviene de múltiples fuentes?",
-                si: "RESULTADO:DDoS",
-                no: "RESULTADO:DoS"
-            },
-            modificacionSistema: {
-                question: "¿El ataque se oculta en el sistema operativo?",
-                si: "RESULTADO:Rootkit",
-                no: "RESULTADO:Virus"
-            },
-            interaccionUsuario: {
-                question: "¿El ataque requiere engañar al usuario?",
-                si: "tipoEngano",
-                no: "propagacion"
-            },
-            tipoEngano: {
-                question: "¿El ataque está dirigido a objetivos específicos?",
-                si: "nivelObjetivo",
-                no: "RESULTADO:Phishing"
-            },
-            nivelObjetivo: {
-                question: "¿El objetivo son ejecutivos de alto nivel?",
-                si: "RESULTADO:Whaling",
-                no: "RESULTADO:Spear Phishing"
-            },
-            propagacion: {
-                question: "¿El ataque se propaga automáticamente?",
-                si: "RESULTADO:Gusano",
-                no: "tipoRecoleccion"
-            },
-            tipoRecoleccion: {
-                question: "¿El ataque recolecta información del usuario?",
-                si: "tipoInformacion",
-                no: "recursos"
-            },
-            tipoInformacion: {
-                question: "¿El ataque registra las pulsaciones de teclado?",
-                si: "RESULTADO:Keylogger",
-                no: "RESULTADO:Spyware"
-            },
-            recursos: {
-                question: "¿El ataque consume recursos del sistema para beneficio del atacante?",
-                si: "RESULTADO:Cryptojacker",
-                no: "publicidad"
-            },
-            publicidad: {
-                question: "¿El ataque muestra publicidad no deseada?",
-                si: "RESULTADO:Adware",
-                no: "RESULTADO:Troyano"
-            }
-        };
+    inicial: {
+        question: "¿Has notado algo extraño en el funcionamiento de tu dispositivo?",
+        si: "tipoProblema",
+        no: "programaNuevo"
+    },
+    programaNuevo: {
+        question: "¿Has instalado recientemente algún programa o app que te llamó la atención?",
+        si: "comportamientoPrograma",
+        no: "mensajesRecibidos"
+    },
+    comportamientoPrograma: {
+        question: "¿El programa te pide permisos para acceder a cosas que no parecen necesarias?",
+        si: "actividadSospechosa",
+        no: "mensajesRecibidos"
+    },
+    actividadSospechosa: {
+        question: "¿Notas que el programa hace cosas sin que tú las inicies?",
+        si: "conexionesRaras",
+        no: "mensajesRecibidos"
+    },
+    conexionesRaras: {
+        question: "¿Tu dispositivo se conecta a internet cuando el programa está activo, aunque no debería necesitarlo?",
+        si: "RESULTADO:Troyano",
+        no: "tipoProblema"
+    },
+    tipoProblema: {
+        question: "¿Has perdido acceso a tus archivos o han cambiado de alguna manera?",
+        si: "archivosAfectados",
+        no: "rendimiento"
+    },
+    archivosAfectados: {
+        question: "¿Tus archivos tienen una extensión diferente o no puedes abrirlos?",
+        si: "mensajeArchivos",
+        no: "cambiosSistema"
+    },
+    mensajeArchivos: {
+        question: "¿Has encontrado algún mensaje que pide dinero para recuperar tus archivos?",
+        si: "tipoPago",
+        no: "cambiosSistema"
+    },
+    tipoPago: {
+        question: "¿Te piden pagar con Bitcoin u otro método de pago poco común?",
+        si: "RESULTADO:Ransomware",
+        no: "cambiosSistema"
+    },
+    cambiosSistema: {
+        question: "¿Tus programas habituales están funcionando de manera diferente?",
+        si: "propagacionCambios",
+        no: "rendimiento"
+    },
+    propagacionCambios: {
+        question: "¿Los problemas aparecen cuando abres ciertos archivos o programas?",
+        si: "comportamientoProgramas",
+        no: "verificarGusano"
+    },
+    comportamientoProgramas: {
+        question: "¿Los problemas se extienden a más archivos con el tiempo?",
+        si: "RESULTADO:Virus",
+        no: "verificarGusano"
+    },
+    rendimiento: {
+        question: "¿Tu dispositivo o internet está más lento de lo normal?",
+        si: "tipoLentitud",
+        no: "ocultamiento"
+    },
+    tipoLentitud: {
+        question: "¿Las páginas web o servicios dejan de funcionar completamente?",
+        si: "origenProblema",
+        no: "consumoRecursos"
+    },
+    origenProblema: {
+        question: "¿El problema afecta a más personas que intentan acceder al mismo servicio?",
+        si: "patronAtaque",
+        no: "verificarDos"
+    },
+    patronAtaque: {
+        question: "¿El servicio funciona a veces sí y a veces no, de forma intermitente?",
+        si: "RESULTADO:DDoS",
+        no: "verificarDos"
+    },
+    verificarDos: {
+        question: "¿El problema persiste incluso cuando reinicas tu dispositivo?",
+        si: "RESULTADO:DoS",
+        no: "ocultamiento"
+    },
+    ocultamiento: {
+        question: "¿El antivirus o el administrador de tareas no funcionan o no se pueden abrir?",
+        si: "comportamientoOculto",
+        no: "mensajesRecibidos"
+    },
+    comportamientoOculto: {
+        question: "¿Los problemas persisten incluso después de usar el antivirus?",
+        si: "privilegiosAdmin",
+        no: "mensajesRecibidos"
+    },
+    privilegiosAdmin: {
+        question: "¿Has perdido permisos de administrador o no puedes hacer cambios en tu sistema?",
+        si: "RESULTADO:Rootkit",
+        no: "mensajesRecibidos"
+    },
+    mensajesRecibidos: {
+        question: "¿Has recibido mensajes o correos que te piden hacer algo urgentemente?",
+        si: "tipoMensaje",
+        no: "verificarGusano"
+    },
+    tipoMensaje: {
+        question: "¿El mensaje parece ser de una empresa o servicio que conoces?",
+        si: "destinatarioMensaje",
+        no: "verificarRecoleccion"
+    },
+    destinatarioMensaje: {
+        question: "¿El mensaje está dirigido específicamente a ti o tu empresa?",
+        si: "nivelCargo",
+        no: "verificarPhishing"
+    },
+    verificarPhishing: {
+        question: "¿Te piden datos personales o que hagas clic en algún enlace?",
+        si: "RESULTADO:Phishing",
+        no: "verificarRecoleccion"
+    },
+    nivelCargo: {
+        question: "¿El mensaje está relacionado con tu posición en la empresa o mentions temas financieros importantes?",
+        si: "verificarWhaling",
+        no: "verificarSpearPhishing"
+    },
+    verificarWhaling: {
+        question: "¿Eres directivo o tienes acceso a información financiera sensible de la empresa?",
+        si: "RESULTADO:Whaling",
+        no: "verificarSpearPhishing"
+    },
+    verificarSpearPhishing: {
+        question: "¿El mensaje menciona detalles específicos sobre tu trabajo o vida personal?",
+        si: "RESULTADO:Spear Phishing",
+        no: "verificarRecoleccion"
+    },
+    verificarGusano: {
+        question: "¿Los mismos problemas están apareciendo en otros dispositivos de tu red?",
+        si: "propagacionRed",
+        no: "verificarRecoleccion"
+    },
+    propagacionRed: {
+        question: "¿Los problemas se extienden solos sin que hagas nada?",
+        si: "velocidadPropagacion",
+        no: "verificarRecoleccion"
+    },
+    velocidadPropagacion: {
+        question: "¿Los problemas aparecen rápidamente en diferentes dispositivos?",
+        si: "RESULTADO:Gusano",
+        no: "verificarRecoleccion"
+    },
+    verificarRecoleccion: {
+        question: "¿Has notado que aparecen ventanas o mensajes sobre lo que escribes?",
+        si: "tipoRegistro",
+        no: "verificarEspia"
+    },
+    tipoRegistro: {
+        question: "¿Aparecen caracteres extraños cuando escribes o tu texto se comporta de forma rara?",
+        si: "registroTeclado",
+        no: "verificarEspia"
+    },
+    registroTeclado: {
+        question: "¿Has notado actividad en tu conexión a internet cuando escribes?",
+        si: "RESULTADO:Keylogger",
+        no: "verificarEspia"
+    },
+    verificarEspia: {
+        question: "¿Tu navegador muestra tu historial de sitios que no has visitado?",
+        si: "comportamientoEspia",
+        no: "consumoRecursos"
+    },
+    comportamientoEspia: {
+        question: "¿Aparecen archivos o capturas de pantalla que no has creado tú?",
+        si: "RESULTADO:Spyware",
+        no: "consumoRecursos"
+    },
+    consumoRecursos: {
+        question: "¿Tu dispositivo hace ruido o se calienta sin razón aparente?",
+        si: "tipoConsumo",
+        no: "publicidad"
+    },
+    tipoConsumo: {
+        question: "¿La batería se agota más rápido de lo normal?",
+        si: "verificarMineria",
+        no: "publicidad"
+    },
+    verificarMineria: {
+        question: "¿El ventilador se activa aunque no estés usando programas pesados?",
+        si: "RESULTADO:Cryptojacker",
+        no: "publicidad"
+    },
+    publicidad: {
+        question: "¿Aparecen anuncios en lugares donde antes no había?",
+        si: "tipoPublicidad",
+        no: "inicial"
+    },
+    tipoPublicidad: {
+        question: "¿Tu página de inicio o buscador han cambiado sin tu permiso?",
+        si: "cambiosNavegador",
+        no: "inicial"
+    },
+    cambiosNavegador: {
+        question: "¿Los anuncios aparecen incluso cuando no estás navegando por internet?",
+        si: "RESULTADO:Adware",
+        no: "inicial"
+    }
+};
 
         // Descripciones de los ataques
         const descriptions = {
@@ -204,90 +338,127 @@
             "Troyano": "Malware que se disfraza como software legítimo para engañar al usuario."
         };
 
-        let currentNode = "impacto";
-        let remainingThreats = new Set(Object.keys(descriptions));
+        let currentNode = "inicial";  // Cambiado de "impacto" a "inicial"
+let remainingThreats = new Set(Object.keys(descriptions));
 
-        function updateRemainingThreats() {
-            const remainingCount = remainingThreats.size;
-            document.getElementById('remaining-threats').textContent = 
-                `Amenazas posibles restantes: ${remainingCount}`;
-        }
+function updateRemainingThreats() {
+    const remainingCount = remainingThreats.size;
+    document.getElementById('remaining-threats').textContent = 
+        `Amenazas posibles restantes: ${remainingCount}`;
+}
 
-        function filterThreats(answer, question) {
-            // Lógica para filtrar amenazas basada en las respuestas
-            switch(currentNode) {
-                case "impacto":
-                    if (answer === 'no') {
-                        remainingThreats.delete("Ransomware");
-                        remainingThreats.delete("DDoS");
-                        remainingThreats.delete("DoS");
-                        remainingThreats.delete("Rootkit");
-                    }
-                    break;
-                case "tipoImpacto":
-                    if (answer === 'no') {
-                        remainingThreats.delete("Ransomware");
-                        remainingThreats.delete("Rootkit");
-                        remainingThreats.delete("Virus");
-                    }
-                    break;
-                // Añadir más casos según sea necesario
+function filterThreats(answer, currentNode) {
+    // Nueva lógica de filtrado basada en el árbol actualizado
+    switch(currentNode) {
+        case "archivosAfectados":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Ransomware", "Virus"].includes(threat)));
             }
-            updateRemainingThreats();
-        }
-
-        function answer(response) {
-            const node = decisionTree[currentNode];   
-            if (!node) {
-                return;
+            break;
+        case "tipoLentitud":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["DDoS", "DoS", "Cryptojacker"].includes(threat)));
             }
-
-            filterThreats(response, node.question);
-
-            let nextNode;
-            if (response === 'si') {
-                nextNode = node.si;
-            } else if (response === 'no') {
-                nextNode = node.no;
-            } else {
-                // Si la respuesta es "no sé", toma el camino más probable
-                nextNode = node.si;
+            break;
+        case "ocultamiento":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Rootkit", "Spyware"].includes(threat)));
             }
-
-            if (nextNode.startsWith("RESULTADO:")) {
-                const resultado = nextNode.split(":")[1];
-                showResult(resultado);
-            } else {
-                currentNode = nextNode;
-                document.getElementById('question').textContent = decisionTree[nextNode].question;
+            break;
+        case "mensajesRecibidos":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Phishing", "Spear Phishing", "Whaling"].includes(threat)));
             }
-        }
+            break;
+        case "verificarGusano":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Gusano", "Virus"].includes(threat)));
+            }
+            break;
+        case "verificarRecoleccion":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Keylogger", "Spyware"].includes(threat)));
+            }
+            break;
+        case "consumoRecursos":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Cryptojacker"].includes(threat)));
+            }
+            break;
+        case "publicidad":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Adware"].includes(threat)));
+            }
+            break;
+        case "comportamientoPrograma":
+            if (answer === 'si') {
+                remainingThreats = new Set([...remainingThreats].filter(threat => 
+                    ["Troyano"].includes(threat)));
+            }
+            break;
+    }
+    updateRemainingThreats();
+}
 
-        function showResult(resultado) {
-            document.getElementById('question').style.display = 'none';
-            document.getElementById('result').textContent = `¡Creo que es un ${resultado}!`;
-            document.getElementById('description').style.display = 'block';
-            document.getElementById('description').textContent = descriptions[resultado] || 
-                "Este es un tipo de ataque relacionado con la ciberseguridad.";
-            
-            const confidence = ((1 - (remainingThreats.size / Object.keys(descriptions).length)) * 100).toFixed(1);
-            document.getElementById('confidence').textContent = 
-                `Nivel de confianza: ${confidence}%`;
-        }
+function answer(response) {
+    const node = decisionTree[currentNode];
+    if (!node) {
+        return;
+    }
 
-        function resetGame() {
-            currentNode = "impacto";
-            remainingThreats = new Set(Object.keys(descriptions));
-            document.getElementById('question').style.display = 'block';
-            document.getElementById('question').textContent = decisionTree[currentNode].question;
-            document.getElementById('result').textContent = '';
-            document.getElementById('description').style.display = 'none';
-            document.getElementById('confidence').textContent = '';
-            updateRemainingThreats();
-        }
+    filterThreats(response, currentNode);
 
-        // Iniciar el juego
-        resetGame();
+    let nextNode;
+    if (response === 'si') {
+        nextNode = node.si;
+    } else if (response === 'no') {
+        nextNode = node.no;
+    } else {
+        nextNode = node.si;  // Camino por defecto para "no sé"
+    }
+
+    if (nextNode.startsWith("RESULTADO:")) {
+        const resultado = nextNode.split(":")[1];
+        showResult(resultado);
+    } else {
+        currentNode = nextNode;
+        document.getElementById('question').textContent = decisionTree[nextNode].question;
+    }
+}
+
+function showResult(resultado) {
+    document.getElementById('question').style.display = 'none';
+    document.getElementById('result').textContent = `¡Creo que es un ${resultado}!`;
+    document.getElementById('description').style.display = 'block';
+    document.getElementById('description').textContent = descriptions[resultado] || 
+        "Este es un tipo de ataque relacionado con la ciberseguridad.";
+    
+    const confidence = ((1 - (remainingThreats.size / Object.keys(descriptions).length)) * 100).toFixed(1);
+    document.getElementById('confidence').textContent = 
+        `Nivel de confianza: ${confidence}%`;
+}
+
+function resetGame() {
+    currentNode = "inicial";  // Cambiado de "impacto" a "inicial"
+    remainingThreats = new Set(Object.keys(descriptions));
+    document.getElementById('question').style.display = 'block';
+    document.getElementById('question').textContent = decisionTree[currentNode].question;
+    document.getElementById('result').textContent = '';
+    document.getElementById('description').style.display = 'none';
+    document.getElementById('confidence').textContent = '';
+    updateRemainingThreats();
+}
+
+// Iniciar el juego
+resetGame();
     </script>
 </body>
 </html>

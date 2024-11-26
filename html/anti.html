@@ -9,58 +9,162 @@
     
 </head>
 <body>
-    <div id="header-container"></div>
-
-    <main>
-        <section class="antivirus">
-            <!-- Tarjeta de antivirus 1 -->
-            <div class="card">
-                <img src="/rsc/norton.avif" alt="">
-                <h3>Norton 360</h3>
-                <p><strong>Características:</strong> Protección avanzada contra malware, VPN, protección de identidad, control parental.</p>
-                <p><strong>Precio:</strong> $39.99/año</p>
-                <p><strong>Puntuación:</strong> 4.8/5</p>
+    <header>
+        <div class="logo">
+    
+            <img src="../rsc/GUARDIAN NETn.png" alt="" style="width: 150px;">
+          </div>
+        
+          <nav>
+        
+            <ul>
+              <a href="../html/index.html" title="Home">
+                <li>Home</li>
+              </a>
+              <a href="../html/anti.html" title="Antivirus">
+                <li>Anti Virus</li>
+              </a>
+              <a href="../html/av.html" title="Info">
+                <li>Informacion</li>
+              </a>
+              <a href="../html/connor.html" title="connor">
+                <li>C.O.N.N.O.R</li>
+              </a>
+              <a href="../html/login.html" title="singin">
+                <li>Iniciar Sesion / Registrarse</li>
+              </a>
+              <button id="btnCerrarSesion" class="btn-cerrar-sesion">Cerrar Sesión</button>
+            </ul>
+        
+            <div class="dummy-mobile-menu">
+              <i class="bi bi-list"></i>
             </div>
+        
+          </nav>
+        
+          <div class="nav-socials">
+            <a href="javascript:void(0);" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="javascript:void(0);" title="Twitter"><i class="bi bi-twitter"></i></i></a>
+            <a href="javascript:void(0);" title="Snapchat"><i class="bi bi-snapchat"></i></a>
+          </div>
+    </header>
 
-            <!-- Tarjeta de antivirus 2 -->
-            <div class="card">
-                <img src="/rsc/bitdef.png" alt="">
-                <h3>Bitdefender Total Security</h3>
-                <p><strong>Características:</strong> Protección en tiempo real, herramientas de optimización, control de micrófono/cámara.</p>
-                <p><strong>Precio:</strong> $34.99/año</p>
-                <p><strong>Puntuación:</strong> 4.7/5</p>
+    <div class="antivirus-container">
+        <div class="card">
+            <img src="../rsc/norton.avif" alt="Norton 360">
+            <h3>Norton 360</h3>
+            <div class="card-content">
+                <div class="feature-label">CARACTERÍSTICAS:</div>
+                <div class="feature-text">Protección avanzada contra malware, VPN, protección de identidad, control parental.</div>
+                <div class="price">$39.99/año</div>
+                <div class="rating">Puntuación: 4.8/5</div>
+                <button>MÁS INFORMACIÓN</button>
             </div>
+        </div>
 
-            <!-- Tarjeta de antivirus 3 -->
-            <div class="card">
-                <img src="/rsc/mcaffe.png" alt="">
-                <h3>McAfee Total Protection</h3>
-                <p><strong>Características:</strong> Protección multiplataforma, administrador de contraseñas, protección de identidad, VPN.</p>
-                <p><strong>Precio:</strong> $29.99/año</p>
-                <p><strong>Puntuación:</strong> 4.6/5</p>
+        <div class="card">
+            <img src="../rsc/bitdef.png" alt="Bitdefender">
+            <h3>Bitdefender Total Security</h3>
+            <div class="card-content">
+                <div class="feature-label">CARACTERÍSTICAS:</div>
+                <div class="feature-text">Protección en tiempo real, herramientas de optimización, control de micrófono/cámara.</div>
+                <div class="price">$34.99/año</div>
+                <div class="rating">Puntuación: 4.7/5</div>
+                <button>MÁS INFORMACIÓN</button>
             </div>
+        </div>
 
-            <!-- Tarjeta de antivirus 4 -->
-            <div class="card">
-                <img src="/rsc/kasp.png" alt="">
-                <h3>Kaspersky Total Security</h3>
-                <p><strong>Características:</strong> Protección de datos bancarios, control parental, administrador de contraseñas.</p>
-                <p><strong>Precio:</strong> $49.99/año</p>
-                <p><strong>Puntuación:</strong> 4.5/5</p>
+        <div class="card">
+            <img src="../rsc/mcaffe.png" alt="McAfee">
+            <h3>McAfee Total Protection</h3>
+            <div class="card-content">
+                <div class="feature-label">CARACTERÍSTICAS:</div>
+                <div class="feature-text">Protección multiplataforma, administrador de contraseñas, protección de identidad, VPN.</div>
+                <div class="price">$29.99/año</div>
+                <div class="rating">Puntuación: 4.6/5</div>
+                <button>MÁS INFORMACIÓN</button>
             </div>
+        </div>
 
-            <!-- Tarjeta de antivirus 5 -->
-            <div class="card">
-                <img src="/rsc/avast.jpg" alt="">
-                <h3>Avast Premium Security</h3>
-                <p><strong>Características:</strong> Protección contra malware avanzado, escudo contra ransomware, actualizador de software.</p>
-                <p><strong>Precio:</strong> $59.99/año</p>
-                <p><strong>Puntuación:</strong> 4.5/5</p>
+        <div class="card">
+            <img src="../rsc/kasp.png" alt="Kaspersky">
+            <h3>Kaspersky Total Security</h3>
+            <div class="card-content">
+                <div class="feature-label">CARACTERÍSTICAS:</div>
+                <div class="feature-text">Protección de datos bancarios, control parental, administrador de contraseñas.</div>
+                <div class="price">$49.99/año</div>
+                <div class="rating">Puntuación: 4.5/5</div>
+                <button>MÁS INFORMACIÓN</button>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <div id="footer-container"></div>
+        <div class="card">
+            <img src="../rsc/avast.jpg" alt="Avast">
+            <h3>Avast Premium Security</h3>
+            <div class="card-content">
+                <div class="feature-label">CARACTERÍSTICAS:</div>
+                <div class="feature-text">Protección contra malware avanzado, escudo contra ransomware, actualizador de software.</div>
+                <div class="price">$59.99/año</div>
+                <div class="rating">Puntuación: 4.5/5</div>
+                <button>MÁS INFORMACIÓN</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../rsc/Avira.png" alt="Avira">
+            <h3>Avira Prime</h3>
+            <div class="card-content">
+                <div class="feature-label">CARACTERÍSTICAS:</div>
+                <div class="feature-text">Protección contra malware avanzado, escudo contra ransomware, actualizador de software, VPN, Password Manager, Safe Shopping.</div>
+                <div class="price">$109/año</div>
+                <div class="rating">Puntuación: 4.5/5</div>
+                <button>MÁS INFORMACIÓN</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>  
+        <div class="logo-effect">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div>
+                      <div>
+                        <div>
+                          <div>
+                            <b>Guardian</b>
+                            <b>Net</b>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="footer-info">
+      
+          <div class="phone-us">
+            <i class="bi bi-phone-fill"></i>
+            <a href="javascript:void(0)" title="Phone Us">Llamanos</a>
+          </div>
+      
+          <div class="message-us">
+            <i class="bi bi-chat-left-dots-fill"></i>
+            <a href="javascript:void(0);" title="Message Us">Contactanos</a>
+          </div>
+      
+          <div class="locate-us">
+            <i class="bi bi-pin-map-fill"></i>
+            <a href="javascript:void(0);" title="Locate Us">Siguenos</a>
+          </div>
+        </div>
+      
+      </footer>
 
     <script src="/js/headfoot.js"></script>
 </body>
