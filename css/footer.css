@@ -1,15 +1,365 @@
-footer {
-    background-color: #111;
-    color: #888;
-    text-align: center;
-    padding: 15px;
-    border-top: 2px solid #444;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+body,
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 12pt;
+  line-height: 18pt;
+  font-weight: 999;
+  color: white;
 }
 
-footer p {
-    margin: 0;
-    font-size: 0.9em;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #333;
+  background-image: url("https://www.transparenttextures.com/patterns/snow.png");
+  background-size: initial;
+  margin: 0;
 }
+footer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 900px;
+    background: linear-gradient(
+      322deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    z-index: 4;
+    overflow: hidden;
+    transform-style: preserve-3d;
+  }
+  
+  .logo-effect,
+  .logo-effect div {
+    transform-style: preserve-3d;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 150%;
+    height: 300%;
+    outline: 10px solid black;
+  }
+  
+  .logo-effect {
+    transform: rotateX(-50deg) rotateZ(40deg);
+    margin-top: -30px;
+  }
+  
+  .logo-effect div {
+    width: 90%;
+    height: 85%;
+    animation: raise 5s ease-in-out infinite;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    transform: translateZ(20px) rotateX(0deg);
+  }
+  
+  .logo-effect b {
+    color: black;
+    font-size: 100pt;
+    animation: raise 5s ease-in-out infinite;
+    transform: translateZ(20px) rotateX(0deg);
+  }
+  
+  @keyframes raise {
+    0% {
+      transform: translateZ(20px) rotateX(0deg);
+    }
+    50% {
+      transform: translateZ(-60px) rotateX(10deg);
+    }
+    100% {
+      transform: translateZ(20px) rotateX(0deg);
+    }
+  }
+  
+  .logo-effect b:nth-child(1) {
+    animation-delay: 0.5s;
+  }
+  
+  .logo-effect b:nth-child(2) {
+    animation-delay: 1s;
+  }
+  
+  .logo-effect b:nth-child(3) {
+    animation-delay: 1.5s;
+  }
+  
+  .logo-effect > div > div {
+    animation-delay: 0.5s;
+  }
+  
+  .logo-effect > div > div > div {
+    animation-delay: 1s;
+  }
+  
+  .logo-effect > div > div > div > div {
+    animation-delay: 1.5s;
+  }
+  
+  .logo-effect > div > div > div > div > div {
+    animation-delay: 2s;
+  }
+  
+  .logo-effect > div > div > div > div > div > div {
+    animation-delay: 2.5s;
+  }
+  
+  .logo-effect > div > div > div > div > div > div > div {
+    animation-delay: 3s;
+  }
+  
+  .logo-effect > div > div > div > div > div > div > div > div {
+    animation-delay: 3.5s;
+  }
+  
+  .logo-effect > div > div > div > div > div > div > div > div > div {
+    animation-delay: 4s;
+  }
+  
+  .footer-info {
+    position: relative;
+    align-self: flex-end;
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    flex-wrap: wrap;
+    z-index: 5;
+  }
+  
+  .phone-us,
+  .message-us,
+  .locate-us,
+  .social-us {
+    width: 23%;
+    margin: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .phone-us i,
+  .message-us i,
+  .locate-us i,
+  .social-us i {
+    font-size: 34pt;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .phone-us a,
+  .message-us a,
+  .locate-us a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0px 20px;
+    min-height: 50px;
+    font-size: 12pt;
+    font-weight: 100;
+    overflow: hidden;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .phone-us a::after,
+  .message-us a::after,
+  .locate-us a::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 100%;
+    background: white;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .phone-us a:hover::after,
+  .message-us a:hover::after,
+  .locate-us a:hover::after {
+    right: 0;
+  }
+  
+  .phone-us a:hover,
+  .message-us a:hover,
+  .locate-us a:hover {
+    color: black;
+  }
+  
+  .social-us div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+  }
+  
+  .social-us div a {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .social-us div a:hover {
+    transform: translateY(-5px);
+  }
+  
+  .social-us div a i {
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .social-us div a i::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    top: 0;
+    right: 100%;
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .social-us div a:hover i::after {
+    right: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .social-us p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    font-size: 12pt;
+    font-weight: 100;
+  }
+
+
+@media (max-width: 1420px) {
+    .logo-effect b {
+      font-size: 180pt;
+    }
+    .logo-effect div {
+      height: 80%;
+    }
+  }
+  
+ 
+  
+
+
+  
+  @media (max-width: 1050px) {
+    .logo-effect {
+      margin-top: -185px;
+      margin-left: 30px;
+    }
+    .logo-effect b {
+      font-size: 120pt;
+    }
+    .phone-us,
+    .message-us,
+    .locate-us,
+    .social-us {
+      width: 45%;
+    }
+    .social-us {
+      margin-top: 35px;
+    }
+  }
+  
+
+  
+  @media (max-width: 800px) {
+    .logo-effect div {
+      height: 77%;
+      width: 95%;
+    }
+    .logo-effect,
+    .logo-effect div {
+      outline: 7px solid black;
+    }
+  }
+
+  
+
+  
+  @media (max-width: 600px) {
+    .logo-effect div {
+      width: 105%;
+    }
+    .logo-effect b {
+      position: relative;
+      left: 20px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .logo-effect b {
+      left: 60px;
+    }
+  }
+  
+
+  
+  @media (max-width: 460px) {
+    .phone-us,
+    .message-us,
+    .locate-us,
+    .social-us {
+      width: 95%;
+      margin-bottom: 40px;
+    }
+    .social-us {
+      margin-bottom: 5px;
+    }
+  }
+  
+
+  
+  @media (max-width: 370px) {
+    .logo-effect b {
+      font-size: 110pt;
+    }
+  }
+  
+
+  

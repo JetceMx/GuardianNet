@@ -25,6 +25,7 @@ nav ul li {
 nav ul li a {
     color: #ffffff;
     text-decoration: none;
+    font-size: 1.3em;
     padding: 12px 15px;
     transition: background-color 0.3s ease;
 }
@@ -59,7 +60,9 @@ nav ul li a:hover {
     display: block;
 }
 
-
+.logo{
+    width: 150px;
+}
 
 
 

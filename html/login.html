@@ -1,29 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
-    <title>Document</title>
+    <title>Login / Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
+  <div class="container">
+    <div class="logo-container">
+        <div class="logo-placeholder">
+            <img src="../rsc/GUARDIAN_NETnn.png" alt="GuardianNet Logo" class="logo">
+        </div>
+    </div>
     
-</body>
-<script>
-    const firebaseConfig = {
-  apiKey: "AIzaSyA4YU252wQT1ez4g-gOQcYRrsEQHXtlx9Y",
-  authDomain: "guardiannet-d6cd5.firebaseapp.com",
-  projectId: "guardiannet-d6cd5",
-  storageBucket: "guardiannet-d6cd5.firebasestorage.app",
-  messagingSenderId: "430964208603",
-  appId: "1:430964208603:web:8d74b64188bbcd9b11edfe"
-};
+    <div class="form-container">
+        <h2 id="formTitle">Iniciar Sesión</h2>
+        
+        <form id="authForm">
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="pass" placeholder="Contraseña" required>
+            </div>
+            
+            <div class="register-inputs" id="registerInputs">
+                <div class="input-group">
+                    <input type="password" id="confirmPass" placeholder="Confirmar Contraseña">
+                </div>
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Nombre de Usuario">
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button type="submit" id="submitBtn">Iniciar Sesión</button>
+                <button type="button" id="toggleMode" class="toggle-form">¿No tienes cuenta? Regístrate aquí</button>
+            </div>
+        </form>
+        
+       
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="../js/confirebase.js"></script>
 
-  // Inicializar Firebase
-  firebase.initializeApp(firebaseConfig);
-        // Y luego usar:
-        const db = firebase.firestore();
-</script>
+</body>
 </html>
