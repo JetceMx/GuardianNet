@@ -110,6 +110,37 @@
         </div>
       
       </footer>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyA4YU252wQT1ez4g-gOQcYRrsEQHXtlx9Y",
+        authDomain: "guardiannet-d6cd5.firebaseapp.com",
+        projectId: "guardiannet-d6cd5",
+        storageBucket: "guardiannet-d6cd5.firebasestorage.app",
+        messagingSenderId: "430964208603",
+        appId: "1:430964208603:web:8d74b64188bbcd9b11edfe"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        // Observer del estado de autenticación
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+            console.log('Usuario autenticado:', user.email);
+            // Aquí puedes redirigir al usuario o mostrar/ocultar elementos
+            
+            } else {
+            console.log('Usuario no autenticado');
+            // Aquí puedes mostrar el formulario de login o hacer otras acciones
+            alert("Debes iniciar sesion para acceder a aesta pagina");
+            window.location.href="../html/login.html";
+            }
+        });
+      </script>
     <script>
         // Estructura del árbol de decisión
         const decisionTree = {

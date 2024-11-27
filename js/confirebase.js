@@ -35,6 +35,8 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     console.log('Usuario autenticado:', user.email);
     // Aquí puedes redirigir al usuario o mostrar/ocultar elementos
+    alert("Ya iniciaste sesion");
+    window.location.href="../html/index.html";
     
   } else {
     console.log('Usuario no autenticado');
