@@ -49,8 +49,14 @@
             <a href="javascript:void(0);" title="Snapchat"><i class="bi bi-snapchat"></i></a>
           </div>
     </header>
+    <div class='main2'>
+        <h2 class="first">C.O.N.N.O.R</h2>
+        <h2 class="second">C.O.N.N.O.R</h2>
+      </div>
+      
     <div class="container">
-        <h1>C.O.N.N.O.R</h1>
+        <h1 class="t1">¿Que es C.O.N.N.O.R?</h1>
+        <p class="text">Es nuestro asistente, un sistema experto que basandose en las respestuas que le des te ayudara a localizar con precision el problema que estas presentando e informacion detallada sobre este. </p>
         <div id="question" class="question">
             ¿Listo para comenzar?
         </div>
@@ -467,7 +473,7 @@ function answer(response) {
 
 function showResult(resultado) {
     document.getElementById('question').style.display = 'none';
-    document.getElementById('result').textContent = `¡Creo que es un ${resultado}!`;
+    document.getElementById('result').textContent = `¡Probablemente que es un ${resultado}!`;
     document.getElementById('description').style.display = 'block';
     document.getElementById('description').textContent = descriptions[resultado] || 
         "Este es un tipo de ataque relacionado con la ciberseguridad.";

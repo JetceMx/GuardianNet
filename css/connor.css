@@ -212,6 +212,67 @@ nav ul a li {
   cursor: pointer;
 }
 
+
+
+
+
+.main2 {
+  position: relative;
+  margin-top: 100px;
+}
+
+.main2 h2 {
+/*   color: white; */
+  font-size:200px;
+  position:absolute;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+.first {
+  color: transparent;
+  -webkit-text-stroke: 10px #000000;
+}
+
+.second {
+  color: #ffffff;
+  -webkit-text-stroke: 5px #686868;
+  animation: waves 4s ease-in-out infinite;
+}
+ .text{
+  text-align: center;
+ }
+@keyframes waves {
+ 0%,
+	100% {
+		clip-path: polygon(
+			0% 45%,
+			16% 44%,
+			33% 50%,
+			54% 60%,
+			70% 61%,
+			84% 59%,
+			100% 52%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			0% 60%,
+			15% 65%,
+			34% 66%,
+			51% 62%,
+			67% 50%,
+			84% 45%,
+			100% 46%,
+			100% 100%,
+			0% 100%
+		);
+	} 
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -800,14 +861,17 @@ footer {
 }
 
 h1 {
+  margin-top: 100px;
     font-size: 3rem;
     margin-bottom: 2rem;
     text-align: center;
     text-shadow: 1px 1px 0px black, 2px 2px 0px black, 3px 3px 0px black;
 }
 
+
 .question {
     font-size: 1.5rem;
+    margin-top: 100px;
     margin-bottom: 2rem;
     text-align: center;
     font-weight: 400;
