@@ -68,6 +68,7 @@
         <div id="remaining-threats"></div>
         <div id="result"></div>
         <div id="description" class="description" style="display: none;"></div>
+        <a id="moreInfoLink" href="#" target="_blank" style="display: none;">Más información</a>
         <div id="confidence" class="confidence"></div>
         <button onclick="resetGame()" class="reset-btn">Reiniciar</button>
     </div>
@@ -375,6 +376,25 @@
             "Troyano": "Malware que se disfraza como software legítimo para engañar al usuario."
         };
 
+        // Enlaces relacionados con cada tipo de resultado
+        const links = {
+            "Ransomware": "https://latam.kaspersky.com/resource-center/threats/ransomware",
+            "DDoS": "https://latam.kaspersky.com/resource-center/threats/ddos-attacks",
+            "DoS": "https://latam.kaspersky.com/resource-center/threats/ddos-attacks",
+            "Rootkit": "https://latam.kaspersky.com/resource-center/definitions/what-is-rootkit",
+            "Virus": "https://www.kaspersky.es/resource-center/preemptive-safety/how-to-fend-off-a-computer-virus",
+            "Phishing": "https://www.pandasecurity.com/es/security-info/phishing/",
+            "Spear Phishing": "https://latam.kaspersky.com/resource-center/definitions/spear-phishing",
+            "Whaling": "https://latam.kaspersky.com/resource-center/definitions/what-is-a-whaling-attack",
+            "Gusano": "https://www.pandasecurity.com/es/security-info/worm/",
+            "Keylogger": "https://latam.kaspersky.com/resource-center/definitions/keylogger",
+            "Spyware": "https://latam.kaspersky.com/resource-center/threats/spyware",
+            "Cryptojacker": "https://www.kaspersky.es/resource-center/definitions/what-is-cryptojacking",
+            "Adware": "https://www.kaspersky.es/resource-center/definitions/what-is-cryptojacking",
+            "Troyano": "https://latam.kaspersky.com/resource-center/threats/trojans"
+        };
+
+
         let currentNode = "inicial";  // Cambiado de "impacto" a "inicial"
 let remainingThreats = new Set(Object.keys(descriptions));
 
@@ -481,7 +501,19 @@ function showResult(resultado) {
     const confidence = ((1 - (remainingThreats.size / Object.keys(descriptions).length)) * 100).toFixed(1);
     document.getElementById('confidence').textContent = 
         `Nivel de confianza: ${confidence}%`;
+
+    // Configura el enlace ya existente
+    const link = document.getElementById('moreInfoLink');
+    if (links[resultado]) {
+        link.href = links[resultado]; // Asigna la URL correcta
+        link.style.display = 'inline'; // Asegúrate de que sea visible
+        link.textContent = `Más información sobre ${resultado}`; // Texto del enlace
+    } else {
+        link.style.display = 'none'; // Si no hay enlace, lo ocultamos
+    }
 }
+
+
 
 function resetGame() {
     currentNode = "inicial";  // Cambiado de "impacto" a "inicial"

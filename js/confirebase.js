@@ -30,7 +30,7 @@ const toggleMode = document.getElementById('toggleMode');
 const authForm = document.getElementById('authForm');
 const registerInputs = document.getElementById('registerInputs');
 
-// Observer del estado de autenticación
+/*Observer del estado de autenticación
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log('Usuario autenticado:', user.email);
@@ -43,7 +43,7 @@ auth.onAuthStateChanged((user) => {
     // Aquí puedes mostrar el formulario de login o hacer otras acciones
     manejarUsuarioNoAutenticado();
   }
-});
+});*/
 
 
 
@@ -98,6 +98,7 @@ authForm.addEventListener('submit', async (e) => {
     } else {
       // Inicio de sesión
       await auth.signInWithEmailAndPassword(email, password);
+      window.location.href="../html/index.html";
       console.log('Sesión iniciada correctamente');
     }
     
